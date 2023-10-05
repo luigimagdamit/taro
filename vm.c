@@ -164,6 +164,18 @@ static InterpretResult run() {
         push(BOOL_VAL(valuesEqual(a, b)));
         break;
       }
+      case OP_LIST: {
+        double listCount = AS_NUMBER(pop());
+        ObjList* list = newList();
+        for(int i = 0; i < listCount; i++) {
+          Value current = pop();
+          printf("\n%f\n", AS_NUMBER(current));
+          appendList(list, current);
+
+        }
+        push(OBJ_VAL(list));
+        break;
+      }
       case OP_PRINT: {
         printValue(pop());
         printf("\n");

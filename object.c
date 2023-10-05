@@ -55,10 +55,33 @@ ObjString* copyString(const char* chars, int length) {
   return allocateString(heapChars, length, hash);
 }
 
+ObjList* newList() {
+  ObjList* list = ALLOCATE_OBJ(ObjList, OBJ_LIST);
+  list->length = 0;
+  list->capacity = 0;
+  return list;
+}
+
+void appendList(ObjList* list, Value value) {
+  if (list->length + 1 > list->capacity) {
+    int oldCap = list->capacity;
+    list->capacity = GROW_CAPACITY(oldCap);
+    list->values = GROW_ARRAY(Value, list->values, oldCap, list->capacity);
+  }
+  list->values[list->length] = value;
+  list->length++;
+  return;
+}
 void printObject(Value value) {
   switch(OBJ_TYPE(value)) {
     case OBJ_STRING:
       printf("%s", AS_CSTRING(value));
       break;
+    case OBJ_LIST: {
+      Value* values = AS_VLIST(value);
+      for(int i = 0; i < AS_LIST(value)->length; i++) {
+        printf("%f, ", AS_NUMBER(values[i]));
+      }
+    }
   }
 }

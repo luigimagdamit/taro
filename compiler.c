@@ -195,6 +195,29 @@ static void string() {
   emitConstant(OBJ_VAL(copyString(parser.previous.start + 1,
                                   parser.previous.length - 2)));
 }
+static void list() {
+  int listCount = 0;
+  printf("%s", parser.previous.start);
+  
+  for(;;) {
+    if(!check(TOKEN_RIGHT_BRACKET)) {
+      listCount++;
+      expression();
+      
+      consume(TOKEN_COMMA, "Expect ',' after expression");
+    } else {
+      break;
+    }
+
+  }
+  printf("LIST COUNT %d", listCount);
+  consume(TOKEN_RIGHT_BRACKET, "Expect ']' after expression");
+
+  emitConstant(NUMBER_VAL(listCount));
+  emitByte(OP_LIST);
+  //now build list
+  
+}
 static void variable() {
   namedVariable(parser.previous);
 }
@@ -219,6 +242,8 @@ ParseRule rules[] = {
   [TOKEN_RIGHT_PAREN]   = {NULL,     NULL,   PREC_NONE},
   [TOKEN_LEFT_BRACE]    = {NULL,     NULL,   PREC_NONE}, 
   [TOKEN_RIGHT_BRACE]   = {NULL,     NULL,   PREC_NONE},
+  [TOKEN_LEFT_BRACKET]  = {list,     NULL,   PREC_NONE},
+  [TOKEN_RIGHT_BRACKET] = {NULL,     NULL,   PREC_NONE},
   [TOKEN_COMMA]         = {NULL,     NULL,   PREC_NONE},
   [TOKEN_DOT]           = {NULL,     NULL,   PREC_NONE},
   [TOKEN_MINUS]         = {unary,    binary, PREC_TERM},

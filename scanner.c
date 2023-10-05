@@ -48,6 +48,7 @@ static bool match(char expected) {
 }
 static Token makeToken(TokenType type) {
   Token token;
+  printf("\n%d\n", type);
   token.type = type;
   token.start = scanner.start;
   token.length = (int)(scanner.current - scanner.start);
@@ -170,6 +171,8 @@ Token scanToken() {
     case ')': return makeToken(TOKEN_RIGHT_PAREN);
     case '{': return makeToken(TOKEN_LEFT_BRACE);
     case '}': return makeToken(TOKEN_RIGHT_BRACE);
+    case '[': return makeToken(TOKEN_LEFT_BRACKET);
+    case ']': return makeToken(TOKEN_RIGHT_BRACKET);
     case ';': return makeToken(TOKEN_SEMICOLON);
     case ',': return makeToken(TOKEN_COMMA);
     case '.': return makeToken(TOKEN_DOT);
