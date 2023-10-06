@@ -189,6 +189,17 @@ static InterpretResult run() {
         push(list->values[(int)index]);
         break;
       }
+      case OP_LIST_STORE: {
+        Value res = pop();
+        int index = (int)AS_NUMBER(pop());
+        ObjList* list = AS_LIST(pop());
+
+        printf("RES: %f", AS_NUMBER(res));
+
+        list->values[index] = res;
+        push(OBJ_VAL(list));
+        break;
+      }
       case OP_PRINT: {
         printValue(pop());
         printf("\n");
