@@ -4,7 +4,8 @@ let b = 25;
 let c = "hello world";
 print c;
 
+print a == 5;
 let d = [1, 2, 3];
-d[0] = a;
 
-print 1;
+print d[0];
+
