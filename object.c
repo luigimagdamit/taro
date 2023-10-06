@@ -72,6 +72,32 @@ void appendList(ObjList* list, Value value) {
   list->length++;
   return;
 }
+
+void printListVal(Value* value) {
+  switch(value->type) {
+    case VAL_NUMBER:
+      printf("%.2f", AS_NUMBER(*value));
+      break;
+    case VAL_BOOL: {
+      if(AS_BOOL(*value) == true) {
+        printf("true");
+      } else {
+        printf("false");
+      }
+      break;
+    }
+    case VAL_NIL:
+      printf("nil");
+    case VAL_OBJ: {
+      switch(AS_OBJ(*value)->type) {
+        case OBJ_STRING:
+          printf("\"%s\"", AS_CSTRING(*value));
+        case OBJ_LIST:
+          printObject(*value);
+      }
+    }
+  }
+}
 void printObject(Value value) {
   switch(OBJ_TYPE(value)) {
     case OBJ_STRING:
@@ -79,9 +105,13 @@ void printObject(Value value) {
       break;
     case OBJ_LIST: {
       Value* values = AS_VLIST(value);
+      printf("[");
       for(int i = 0; i < AS_LIST(value)->length; i++) {
-        printf("%f, ", AS_NUMBER(values[i]));
+        printListVal(&values[i]);
+        printf(", ");
       }
+      printf("]");
+      break;
     }
   }
 }

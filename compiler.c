@@ -197,18 +197,19 @@ static void string() {
 }
 static void list() {
   int listCount = 0;
-  printf("%s", parser.previous.start);
   
   for(;;) {
     if(!check(TOKEN_RIGHT_BRACKET)) {
       listCount++;
-      expression();
-      
-      consume(TOKEN_COMMA, "Expect ',' after expression");
+      expression(); 
+      if(check(TOKEN_RIGHT_BRACKET)){
+
+      } else{
+        consume(TOKEN_COMMA, "Expect ',' after expression");
+      }
     } else {
       break;
-    }
-
+    } 
   }
   printf("LIST COUNT %d", listCount);
   consume(TOKEN_RIGHT_BRACKET, "Expect ']' after expression");
@@ -217,6 +218,20 @@ static void list() {
   emitByte(OP_LIST);
   //now build list
   
+}
+static void subscript() {
+  parsePrecedence(PREC_OR);
+  consume(TOKEN_RIGHT_BRACKET, "Expected ]");
+
+  // either go to equals or end the expression
+
+  if (match(TOKEN_EQUAL)) {
+    expression();
+    // parse epxression after equals token
+    emitByte(OP_LIST_STORE);
+  } else {
+    emitByte(OP_LIST_SUB);
+  }
 }
 static void variable() {
   namedVariable(parser.previous);
@@ -242,7 +257,7 @@ ParseRule rules[] = {
   [TOKEN_RIGHT_PAREN]   = {NULL,     NULL,   PREC_NONE},
   [TOKEN_LEFT_BRACE]    = {NULL,     NULL,   PREC_NONE}, 
   [TOKEN_RIGHT_BRACE]   = {NULL,     NULL,   PREC_NONE},
-  [TOKEN_LEFT_BRACKET]  = {list,     NULL,   PREC_NONE},
+  [TOKEN_LEFT_BRACKET]  = {list,     subscript,   PREC_OR},
   [TOKEN_RIGHT_BRACKET] = {NULL,     NULL,   PREC_NONE},
   [TOKEN_COMMA]         = {NULL,     NULL,   PREC_NONE},
   [TOKEN_DOT]           = {NULL,     NULL,   PREC_NONE},

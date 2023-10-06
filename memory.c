@@ -20,6 +20,8 @@ static void freeObject(Obj* object) {
       FREE(ObjString, object);
       break;
     }
+    case OBJ_LIST:
+      break;
   }
 }
 

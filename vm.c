@@ -166,14 +166,27 @@ static InterpretResult run() {
       }
       case OP_LIST: {
         double listCount = AS_NUMBER(pop());
+        printf("ARRAY COUNT: %f", listCount);
         ObjList* list = newList();
-        for(int i = 0; i < listCount; i++) {
-          Value current = pop();
+
+        for(int i = listCount; i > 0; i--) {
+          printf("\nLISTCOUNT: %d", i);
+          Value current = peek(i-1);
           printf("\n%f\n", AS_NUMBER(current));
           appendList(list, current);
 
         }
+        while(listCount-- > 0) {
+          pop();
+        }
         push(OBJ_VAL(list));
+        break;
+      }
+      case OP_LIST_SUB: {
+        double index = AS_NUMBER(pop());
+        ObjList* list = AS_LIST(pop());
+
+        push(list->values[(int)index]);
         break;
       }
       case OP_PRINT: {
