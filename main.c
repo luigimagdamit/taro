@@ -16,7 +16,6 @@ static void repl() {
       printf("\n");
       break;
     }
-
     interpret(line);
   }
 }
@@ -48,9 +47,11 @@ static char* readFile(const char* path) {
 
 static void runFile(const char* path) {
   char* source = readFile(path);
+  printf("\nSOURCE: %s DIGIT %d\n", source, strcmp(source, "print 1;"));
+  source[strcspn(source, "\n")] = ' ';
   InterpretResult result = interpret(source);
   free(source);
-
+  
   if(result == INTERPRET_COMPILE_ERROR) exit(65);
   if(result == INTERPRET_RUNTIME_ERROR) exit(70);
 }
