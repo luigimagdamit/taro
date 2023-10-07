@@ -8,3 +8,5 @@ let row3 = [7,6,5];
 
 let number = [row1, row2, row3];
 print number;
+
+print number[1][2];
