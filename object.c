@@ -92,8 +92,10 @@ void printListVal(Value* value) {
       switch(AS_OBJ(*value)->type) {
         case OBJ_STRING:
           printf("\"%s\"", AS_CSTRING(*value));
+          break;
         case OBJ_LIST:
           printObject(*value);
+          break;
       }
     }
   }

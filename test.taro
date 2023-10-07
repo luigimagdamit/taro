@@ -1,11 +1,14 @@
-let a = 5; 
-let b = 25;
+let name = "taro";
+let age = 400;
 
-let c = "hello world";
-print c;
+print "my name is " + name;
 
-print a == 5;
-let d = [1, 2, 3];
+let drinks = ["tea", "coffee", "boba"];
+print drinks;
 
-push(d, 17);
-d;
+push(drinks, "lemonade");
+let fav = drinks[3];
+
+print "my name is " + name + " and i love " + fav;
+
+print fav == "lemonade";

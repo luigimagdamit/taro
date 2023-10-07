@@ -6,17 +6,21 @@
 
 A bytecode interpreter and virtual machine for my ML-inspired programming language that targets custom-made bytecode. Implements a Pratt-styled Precedence parser, implicit type assignment, and bytecode IR generation from a source file. Written in C.
 
-```
-let a = 5; 
-let b = 25;
+```js
+let name = "taro";
+let age = 400;
 
-let c = "hello world";
-print c;
+print "my name is " + name;
 
-print a == 5;
-let d = [1, 2, 3];
+let drinks = ["tea", "coffee", "boba"];
+print drinks;
 
-print d[0];
+push(drinks, "lemonade");
+let fav = drinks[3];
+
+print "my name is " + name + " and i love " + fav;
+
+print fav == "lemonade";
 
 ```
 Taro is designed to utilize the ease of readability of scripting languages similar to JavaScript and Python while maintaining other traditional syntax  considerations such as curly braces for scoping, and semicolons. 
