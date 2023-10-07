@@ -209,8 +209,8 @@ static void _enum() {
   for (;;) {
     if(!check(TOKEN_RIGHT_BRACE)) {
       enumCount++;
-      expression();
-
+      emitConstant(OBJ_VAL(copyString(parser.current.start, parser.current.length)));
+      advance();
       if (check(TOKEN_RIGHT_BRACE)) {
         break;
       }

@@ -1,4 +1,23 @@
-let genres = enum {
-  "ROCK",
-  "CLASSICAL"
+let name = "taro";
+let age = 400;
+// variable assignment with 'let' keyword
+
+let games = enum{
+	VALORANT,
+	TEKKEN,
+	SF6
 };
+print "my name is " + name;
+// print keyword. taro also features string concatenation
+
+let drinks = ["tea", "coffee", "boba"];
+print drinks;
+// taro also features native list types and operations!
+
+push(drinks, "lemonade");
+let fav = drinks[3];
+
+print "my name is " + name + " and i love " + fav;
+
+print fav == "lemonade";
+// yes, we love lemonade :)

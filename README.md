@@ -11,6 +11,13 @@ let name = "taro";
 let age = 400;
 // variable assignment with 'let' keyword
 
+let games = enum{
+	VALORANT,
+	TEKKEN,
+	SF6
+}
+// native support of enum types!
+
 print "my name is " + name;
 // print keyword. taro also features string concatenation
 
@@ -25,7 +32,6 @@ print "my name is " + name + " and i love " + fav;
 
 print fav == "lemonade";
 // yes, we love lemonade :)
-
 ```
 Taro is designed to utilize the ease of readability of scripting languages similar to JavaScript and Python while maintaining other traditional syntax  considerations such as curly braces for scoping, and semicolons. 
 
