@@ -1,12 +1,4 @@
-let a = [[9,5,1], [6,2,6], [3,1,9]];
-print a[1][1];
-
-
-let row1 = [6,2,6];
-let row2 = [3,1,9];
-let row3 = [7,6,5];
-
-let number = [row1, row2, row3];
-print number;
-
-print number[1][2];
+let genres = enum {
+  "ROCK",
+  "CLASSICAL"
+};

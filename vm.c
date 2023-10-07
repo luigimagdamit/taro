@@ -230,6 +230,26 @@ static InterpretResult run() {
         appendList(list, res);
         break;
       }
+      case OP_ENUM: {
+        ObjEnum* _enum = newEnum();
+        double enumCount = AS_NUMBER(pop());
+
+        push(OBJ_VAL(_enum));
+        for(int i = enumCount; i > 0; i--) {
+          printf("\nLISTCOUNT: %d", i);
+          Value current = peek(i);
+          printf("\n%f\n", AS_NUMBER(current));
+          tableSet(&_enum->fields, AS_STRING(current), NUMBER_VAL(_enum->length));
+          _enum->length++;
+
+        }
+        pop();
+        while(enumCount-- > 0) {
+          pop();
+        }
+        push(OBJ_VAL(_enum));
+        break;
+      }
       case OP_PRINT: {
         printValue(pop());
         printf("\n");

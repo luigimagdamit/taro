@@ -55,6 +55,12 @@ ObjString* copyString(const char* chars, int length) {
   return allocateString(heapChars, length, hash);
 }
 
+ObjEnum* newEnum() {
+  ObjEnum* _enum = ALLOCATE_OBJ(ObjEnum, OBJ_ENUM);
+  _enum->length = 0;
+  initTable(&_enum->fields);
+  return _enum;
+}
 ObjList* newList() {
   ObjList* list = ALLOCATE_OBJ(ObjList, OBJ_LIST);
   list->values = NULL;
@@ -114,6 +120,10 @@ void printObject(Value value) {
         printf(", ");
       }
       printf("]");
+      break;
+    }
+    case OBJ_ENUM: {
+      printf("ENUM: %d", AS_ENUM(value)->length);
       break;
     }
   }

@@ -125,6 +125,7 @@ static void statement();
 static void declaration();
 static void printStatement();
 static void pushStatement();
+static void _enum();
 static void expressionStatement();
 static void synchronize();
 static void varDeclaration();
@@ -200,6 +201,34 @@ static void number(bool canAssign) {
 static void string(bool canAssign) {
   emitConstant(OBJ_VAL(copyString(parser.previous.start + 1,
                                   parser.previous.length - 2)));
+}
+static void _enum() {
+  int enumCount = 0;
+
+  consume(TOKEN_LEFT_BRACE, "");
+  for (;;) {
+    if(!check(TOKEN_RIGHT_BRACE)) {
+      enumCount++;
+      expression();
+
+      if (check(TOKEN_RIGHT_BRACE)) {
+        break;
+      }
+      if (check(TOKEN_COMMA)) {
+        consume(TOKEN_COMMA, "Expected ,");
+      } 
+      else {
+        errorAtCurrent("Enum object was not closed");
+        break;
+      }
+    } else {
+      break;
+    }
+  }
+  printf("enum!");
+  consume(TOKEN_RIGHT_BRACE, "");
+  emitConstant(NUMBER_VAL(enumCount));
+  emitByte(OP_ENUM);
 }
 static void list(bool canAssign) {
   int listCount = 0;
@@ -297,6 +326,7 @@ ParseRule rules[] = {
   [TOKEN_IDENTIFIER]    = {variable, NULL,   PREC_NONE},
   [TOKEN_STRING]        = {string,   NULL,   PREC_NONE},
   [TOKEN_NUMBER]        = {number,   NULL,   PREC_NONE},
+  [TOKEN_ENUM]          = {_enum,    NULL,   PREC_NONE},
   [TOKEN_AND]           = {NULL,     NULL,   PREC_NONE},
   [TOKEN_CLASS]         = {NULL,     NULL,   PREC_NONE},
   [TOKEN_ELSE]          = {NULL,     NULL,   PREC_NONE},
