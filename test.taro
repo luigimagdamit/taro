@@ -9,3 +9,8 @@ let d = [1, 2, 3];
 
 print d[0];
 
+let e = 12;
+
+d[1] = e;
+
+print d[1] == e;

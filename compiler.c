@@ -200,12 +200,20 @@ static void list() {
   
   for(;;) {
     if(!check(TOKEN_RIGHT_BRACKET)) {
+      // then its probably an expression
       listCount++;
       expression(); 
+      printf("COMMA: %d\n", check(TOKEN_COMMA));
+      //once this is done, then try to consume the next thing, which should either be a comma or right bracket
       if(check(TOKEN_RIGHT_BRACKET)){
-
-      } else{
+        break;
+      } 
+      if (check(TOKEN_COMMA)){
         consume(TOKEN_COMMA, "Expect ',' after expression");
+      }
+      else {
+        errorAtCurrent("List object was not closed."); 
+        break;
       }
     } else {
       break;
@@ -257,7 +265,7 @@ ParseRule rules[] = {
   [TOKEN_RIGHT_PAREN]   = {NULL,     NULL,   PREC_NONE},
   [TOKEN_LEFT_BRACE]    = {NULL,     NULL,   PREC_NONE}, 
   [TOKEN_RIGHT_BRACE]   = {NULL,     NULL,   PREC_NONE},
-  [TOKEN_LEFT_BRACKET]  = {list,     subscript,PREC_OR},
+  [TOKEN_LEFT_BRACKET]  = {list,     subscript,   PREC_OR},
   [TOKEN_RIGHT_BRACKET] = {NULL,     NULL,   PREC_NONE},
   [TOKEN_COMMA]         = {NULL,     NULL,   PREC_NONE},
   [TOKEN_DOT]           = {NULL,     NULL,   PREC_NONE},

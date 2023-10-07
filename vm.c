@@ -165,6 +165,10 @@ static InterpretResult run() {
         break;
       }
       case OP_LIST: {
+        if(!IS_NUMBER(peek(0))) {
+          runtimeError("Incorrect token: Unable to get the size of the requested list");
+          return INTERPRET_RUNTIME_ERROR;
+        }
         double listCount = AS_NUMBER(pop());
         printf("ARRAY COUNT: %f", listCount);
         ObjList* list = newList();
@@ -183,6 +187,10 @@ static InterpretResult run() {
         break;
       }
       case OP_LIST_SUB: {
+        if(!IS_NUMBER(peek(0))) {
+          runtimeError("List index value must evaluate to number type: list[:number:]");
+          return INTERPRET_RUNTIME_ERROR;
+        }
         double index = AS_NUMBER(pop());
         ObjList* list = AS_LIST(pop());
 
@@ -190,6 +198,10 @@ static InterpretResult run() {
         break;
       }
       case OP_LIST_STORE: {
+        if(!IS_NUMBER(peek(1))) {
+          runtimeError("List index value must evaluate to number type: list[:number:]");
+          return INTERPRET_RUNTIME_ERROR;
+        }
         Value res = pop();
         int index = (int)AS_NUMBER(pop());
         ObjList* list = AS_LIST(pop());
