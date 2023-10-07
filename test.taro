@@ -1,18 +1,10 @@
-let name = "taro";
-let age = 400;
-// variable assignment with 'let' keyword
+let a = [[9,5,1], [6,2,6], [3,1,9]];
+print a[1][1];
 
-print "my name is " + name;
-// print keyword. taro also features string concatenation
 
-let drinks = ["tea", "coffee", "boba"];
-print drinks;
-// taro also features native list types and operations!
+let row1 = [6,2,6];
+let row2 = [3,1,9];
+let row3 = [7,6,5];
 
-push(drinks, "lemonade");
-let fav = drinks[3];
-
-print "my name is " + name + " and i love " + fav;
-
-print fav == "lemonade";
-// yes, we love lemonade :)
+let number = [row1, row2, row3];
+print number;

@@ -57,6 +57,7 @@ ObjString* copyString(const char* chars, int length) {
 
 ObjList* newList() {
   ObjList* list = ALLOCATE_OBJ(ObjList, OBJ_LIST);
+  list->values = NULL;
   list->length = 0;
   list->capacity = 0;
   return list;
@@ -76,7 +77,7 @@ void appendList(ObjList* list, Value value) {
 void printListVal(Value* value) {
   switch(value->type) {
     case VAL_NUMBER:
-      printf("%.2f", AS_NUMBER(*value));
+      printf("%g", AS_NUMBER(*value));
       break;
     case VAL_BOOL: {
       if(AS_BOOL(*value) == true) {
