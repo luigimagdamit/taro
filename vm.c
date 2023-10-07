@@ -165,6 +165,7 @@ static InterpretResult run() {
         break;
       }
       case OP_LIST: {
+        // THIS MIGHT BREAK ONCE GC IS ADDED!!!
         if(!IS_NUMBER(peek(0))) {
           runtimeError("Incorrect token: Unable to get the size of the requested list");
           return INTERPRET_RUNTIME_ERROR;
@@ -172,14 +173,16 @@ static InterpretResult run() {
         double listCount = AS_NUMBER(pop());
         printf("ARRAY COUNT: %f", listCount);
         ObjList* list = newList();
-
+        
+        push(OBJ_VAL(list));
         for(int i = listCount; i > 0; i--) {
           printf("\nLISTCOUNT: %d", i);
-          Value current = peek(i-1);
+          Value current = peek(i);
           printf("\n%f\n", AS_NUMBER(current));
           appendList(list, current);
 
         }
+        pop();
         while(listCount-- > 0) {
           pop();
         }
