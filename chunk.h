@@ -25,6 +25,7 @@ typedef enum {
   OP_LIST,
   OP_LIST_STORE,
   OP_LIST_SUB,
+  OP_PUSH,
   OP_RETURN,
 } OpCode;
 

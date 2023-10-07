@@ -124,6 +124,7 @@ static void expression();
 static void statement();
 static void declaration();
 static void printStatement();
+static void pushStatement();
 static void expressionStatement();
 static void synchronize();
 static void varDeclaration();
@@ -165,7 +166,12 @@ static void declaration() {
 static void statement() {
   if (match(TOKEN_PRINT)) {
     printStatement();
-  } else {
+  }
+  else if (match(TOKEN_PUSH)) {
+    printf("awk");
+    pushStatement();
+  }
+  else {
     expressionStatement();
   }
 }
@@ -359,6 +365,16 @@ static void printStatement() {
   expression();
   consume(TOKEN_SEMICOLON, "Expect ; after value");
   emitByte(OP_PRINT);
+}
+static void pushStatement() {
+  //current should be left paren
+  consume(TOKEN_LEFT_PAREN, "Expected '('");
+  expression();
+  consume(TOKEN_COMMA, "Expected ','");
+  expression();
+  consume(TOKEN_RIGHT_PAREN, "Expected )");
+  consume(TOKEN_SEMICOLON, "Expect ; after value");
+  emitByte(OP_PUSH);
 }
 
 static void synchronize() {

@@ -215,6 +215,13 @@ static InterpretResult run() {
         push(OBJ_VAL(list));
         break;
       }
+      case OP_PUSH: {
+        Value res = pop();
+        ObjList* list = AS_LIST(pop());
+
+        appendList(list, res);
+        break;
+      }
       case OP_PRINT: {
         printValue(pop());
         printf("\n");
