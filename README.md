@@ -9,11 +9,14 @@ A bytecode interpreter and virtual machine for my ML-inspired programming langua
 ```js
 let name = "taro";
 let age = 400;
+// variable assignment with 'let' keyword
 
 print "my name is " + name;
+// print keyword. taro also features string concatenation
 
 let drinks = ["tea", "coffee", "boba"];
 print drinks;
+// taro also features native list types and operations!
 
 push(drinks, "lemonade");
 let fav = drinks[3];
@@ -21,6 +24,7 @@ let fav = drinks[3];
 print "my name is " + name + " and i love " + fav;
 
 print fav == "lemonade";
+// yes, we love lemonade :)
 
 ```
 Taro is designed to utilize the ease of readability of scripting languages similar to JavaScript and Python while maintaining other traditional syntax  considerations such as curly braces for scoping, and semicolons. 
