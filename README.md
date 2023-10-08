@@ -102,3 +102,14 @@ let Genres = enum {
 
 let mostPlayed = Genres::ROCK;
 ```
+### Scope
+
+```js
+let a = 123;
+
+{
+	let a = 321;
+	print a;
+}
+print a;
+```
