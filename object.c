@@ -103,6 +103,9 @@ void printListVal(Value* value) {
         case OBJ_LIST:
           printObject(*value);
           break;
+        case OBJ_ENUM:
+          printObject(*value);
+          break;
       }
     }
   }

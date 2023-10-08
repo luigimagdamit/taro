@@ -188,8 +188,8 @@ static void statement();
 static void declaration();
 static void printStatement();
 static void pushStatement();
-static void _enum();
-static void getEnum();
+static void _enum(bool canAssign);
+static void getEnum(bool canAssign);
 static void expressionStatement();
 static void synchronize();
 static void varDeclaration();
@@ -350,7 +350,7 @@ static void string(bool canAssign) {
   emitConstant(OBJ_VAL(copyString(parser.previous.start + 1,
                                   parser.previous.length - 2)));
 }
-static void _enum() {
+static void _enum(bool canAssign) {
   int enumCount = 0;
 
   consume(TOKEN_LEFT_BRACE, "");
@@ -378,7 +378,7 @@ static void _enum() {
   emitConstant(NUMBER_VAL(enumCount));
   emitByte(OP_ENUM);
 }
-static void getEnum() {
+static void getEnum(bool canAssign) {
   printf("getenum");
   emitConstant(OBJ_VAL(copyString(parser.current.start, parser.current.length)));
   advance();

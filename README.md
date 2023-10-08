@@ -80,9 +80,9 @@ let books = ["chainsaw man", "berserk", "one piece"];
 let nums = [1, 2, 3];
 
 let matrix = [
-	[1, 2, 3],
-	[4, 5, 6],
-	[7, 8, 9]
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
 ];
 // storage of lists within lists allows for matrix structures
 print matrix[2][2];
@@ -94,9 +94,9 @@ let mix = [1, "1"];
 ### Enums
 ```js
 let Genres = enum {
-	ROCK,
-	INDIE,
-	CLASSICAL	
+  ROCK,
+  INDIE,
+  CLASSICAL	
 };
 // native enum structures allow for custom data types and pattern matching!
 
@@ -109,8 +109,8 @@ let mostPlayed = Genres::ROCK;
 let a = 123;
 
 {
-	let a = 321;
-	print a;
+  let a = 321;
+   print a;
 }
 print a;
 ```
@@ -118,14 +118,28 @@ print a;
 ### Control Flow
 
 ```js
-if (true) {
-	print "hello!!";
+let Games = enum {
+  MELEE,
+  MARIOKART,
+  BG3
+};
+
+let name = "Shravan";
+let bloodthirsty = true;
+let sleepy = true;
+
+let favorite;
+
+if (name == "Shravan" and bloodthirsty) {
+  favorite = Games::MELEE;
 }
-if (false) {
-  print "you shouldn't see this";
-} else {
-  print "hello again!";
+else if (name == "Mark" or sleepy) {
+  favorite = Games::MARIOKART;
 }
+else {
+  favorite = Games::BG3;
+}
+
 ```
 ### While Loops
 ```js
@@ -153,6 +167,23 @@ for (let i = 0; i < 10; i = i + 1) {
   push(nums, i);
 }
 print nums;
+```
+
+### Nested For Loops and Matrix Iteration
+```js
+let a = [
+  [951, 626, 909],
+  [323, 301, 805],
+  [505, 999, 911]
+];
+
+
+for (let i = 0; i < 3; i = i + 1) {
+  for (let j = 0; j < 3; j = j + 1) {
+    print a[j][i];
+  }
+}
+print a;
 ```
 ### Fibonacci Number :)
 ```js

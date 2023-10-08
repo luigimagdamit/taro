@@ -22,6 +22,8 @@ static void freeObject(Obj* object) {
     }
     case OBJ_LIST:
       break;
+    case OBJ_ENUM:
+      break;
   }
 }
 
