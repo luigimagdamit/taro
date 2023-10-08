@@ -39,4 +39,66 @@ Taro is designed to utilize the ease of readability of scripting languages simil
 
 Planned for the future is a garbage collector to automatically manage heap-allocated objects such as strings, and arrays. Within the next update I will have control flow, which will make Taro turing complete. Further down, I will be implementing OOP functionality.
 
+# Variable Declaration
+```js
+let cat = "meow";
+let dog = "woof";
+// string declarations
 
+let pets = 3;
+// number declaration
+```
+# Types
+### Numbers
+```js
+let smol = 0.01;
+let big = 1000;
+// numbers are internally stored as floats, and support decimal numbers.
+
+let bigMinus = -big;
+// numeric negation is also supported
+```
+
+### Strings
+```js
+let name = "taro";
+// string declaration
+
+let name = name + " is my name!";
+// string concatenation is supported
+
+let a = "a";
+let b = "b";
+
+print a == b;
+// string equality comparison is also included natively
+```
+
+### Lists
+```js
+let books = ["chainsaw man", "berserk", "one piece"];
+let nums = [1, 2, 3];
+
+let matrix = [
+	[1, 2, 3],
+	[4, 5, 6],
+	[7, 8, 9]
+];
+// storage of lists within lists allows for matrix structures
+print matrix[2][2];
+
+let mix = [1, "1"];
+// lists allow for multiple types to be stored in the same list
+```
+
+### Enums
+```js
+let Genres = enum {
+	ROCK,
+	INDIE,
+	CLASSICAL	
+};
+// native enum structures allow for custom data types and pattern matching!
+
+let mostPlayed = Genres::ROCK;
+```
