@@ -1,27 +1,20 @@
-let name = "taro";
-let age = 400;
-// variable assignment with 'let' keyword
+let first = 0;
+let second = 1;
 
-let Games = enum{
-	VALORANT,
-	TEKKEN,
-	SF6
-};
+let length = 7;
+let count = 0;
 
-let currentlyPlaying = Games::VALORANT;
-// native support of enum types!
+let fibs = [];
+while (count < length) {
+  push(fibs, first);
 
-print "my name is " + name;
-// print keyword. taro also features string concatenation
+  let temp = second;
+  print first + second;
 
-let drinks = ["tea", "coffee", "boba"];
-print drinks;
-// taro also features native list types and operations!
+  second = first + second;
+  first = temp;
 
-push(drinks, "lemonade");
-let fav = drinks[3];
+  count = count + 1;
+}
 
-print "my name is " + name + " and i love " + fav;
-
-print fav == "lemonade";
-// yes, we love lemonade :)
+print fibs;
