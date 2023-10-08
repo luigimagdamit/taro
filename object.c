@@ -124,6 +124,7 @@ void printObject(Value value) {
     }
     case OBJ_ENUM: {
       printf("ENUM: %d", AS_ENUM(value)->length);
+
       break;
     }
   }

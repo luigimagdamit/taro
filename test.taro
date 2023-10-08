@@ -2,11 +2,15 @@ let name = "taro";
 let age = 400;
 // variable assignment with 'let' keyword
 
-let games = enum{
+let Games = enum{
 	VALORANT,
 	TEKKEN,
 	SF6
 };
+
+let currentlyPlaying = Games::VALORANT;
+// native support of enum types!
+
 print "my name is " + name;
 // print keyword. taro also features string concatenation
 

@@ -250,6 +250,10 @@ static InterpretResult run() {
         push(OBJ_VAL(_enum));
         break;
       }
+      case OP_GET_ENUM: {
+        printf("getenum in vm");
+        
+      }
       case OP_PRINT: {
         printValue(pop());
         printf("\n");

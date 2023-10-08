@@ -24,6 +24,7 @@ typedef enum {
   OP_NEGATE,
   OP_PRINT,
   OP_ENUM,
+  OP_GET_ENUM,
   OP_LIST,
   OP_LIST_STORE,
   OP_LIST_SUB,

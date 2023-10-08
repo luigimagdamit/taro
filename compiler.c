@@ -126,6 +126,7 @@ static void declaration();
 static void printStatement();
 static void pushStatement();
 static void _enum();
+static void getEnum();
 static void expressionStatement();
 static void synchronize();
 static void varDeclaration();
@@ -230,6 +231,12 @@ static void _enum() {
   emitConstant(NUMBER_VAL(enumCount));
   emitByte(OP_ENUM);
 }
+static void getEnum() {
+  printf("getenum");
+  emitConstant(OBJ_VAL(copyString(parser.current.start, parser.current.length)));
+  advance();
+  emitByte(OP_GET_ENUM);
+}
 static void list(bool canAssign) {
   int listCount = 0;
   
@@ -323,6 +330,7 @@ ParseRule rules[] = {
   [TOKEN_GREATER_EQUAL] = {NULL,     binary, PREC_EQUALITY},
   [TOKEN_LESS]          = {NULL,     binary, PREC_EQUALITY},
   [TOKEN_LESS_EQUAL]    = {NULL,     binary, PREC_EQUALITY},
+  [TOKEN_DOUBLE_COLON]  = {NULL,     getEnum,PREC_OR},
   [TOKEN_IDENTIFIER]    = {variable, NULL,   PREC_NONE},
   [TOKEN_STRING]        = {string,   NULL,   PREC_NONE},
   [TOKEN_NUMBER]        = {number,   NULL,   PREC_NONE},

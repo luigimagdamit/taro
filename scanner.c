@@ -206,6 +206,10 @@ Token scanToken() {
     case '>':
       return makeToken(
         match('=') ? TOKEN_GREATER_EQUAL : TOKEN_GREATER);
+    case ':':
+      return makeToken(
+        match(':') ? TOKEN_DOUBLE_COLON : TOKEN_DOUBLE_COLON
+      );
     case '"': return string();
     
   }
