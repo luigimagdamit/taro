@@ -1,10 +1,7 @@
+let a = 123;
 
 {
-	let b = [1,2,3];
-  print	b;
+	let a = 312;
+	print a;
 }
-
-let a = 323;
 print a;
-print b;
-let mostPlayed = Genres::ROCK;
