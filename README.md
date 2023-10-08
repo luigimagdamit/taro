@@ -4,7 +4,7 @@
 ### Taro is a small, dynamically typed scripting language. 
 #### Note: This project is still currently under construction
 
-A bytecode interpreter and virtual machine for my ML-inspired programming language that targets custom-made bytecode. Implements a Pratt-styled Precedence parser, implicit type assignment, and bytecode IR generation from a source file. Written in C.
+A bytecode interpreter and virtual machine for my Lua & Python inspired programming language that targets custom-made bytecode. Implements a Pratt-styled Precedence parser, implicit type assignment, and bytecode IR generation from a source file. Written in C.
 
 ```js
 let name = "taro";
