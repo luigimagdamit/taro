@@ -1,7 +1,10 @@
-let Genres = enum {
-	ROCK,
-	INDIE,
-	CLASSICAL	
-};
 
+{
+	let b = [1,2,3];
+  print	b;
+}
+
+let a = 323;
+print a;
+print b;
 let mostPlayed = Genres::ROCK;
