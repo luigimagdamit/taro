@@ -1,7 +1,10 @@
-let a = 123;
-
-{
-	let a = 312;
-	print a;
+if (1 == 1) {
+	print("this is true!");
 }
-print a;
+
+if (1 == 2) {
+	print("i am false!");
+}
+else {
+	print "hello world!";
+}
