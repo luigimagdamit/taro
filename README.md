@@ -204,4 +204,31 @@ while (count < length) {
 }
 
 print fibs;
+
+```
+
+### FizzBuzz
+```js
+let res = [];
+
+for (let i = 0; i < 20; i = i + 1) {
+  if (i % 3 == 0) {
+    print "fizz";
+    push(res, "fizz");
+  }
+  else if (i % 5 == 0) {
+    print "buzz";
+    push(res, "buzz");
+  }
+  else if (i % 3 == 0 and i % 5 == 0) {
+    print "fizzbuzz";
+    push(res, "fizzbuzz");
+  }
+  else {
+    print i;
+    push(res, i);
+  }
+}
+
+print res;
 ```

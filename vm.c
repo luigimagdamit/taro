@@ -128,8 +128,6 @@ static InterpretResult run() {
 
         int res = a % b;
 
-
-
         printf("OP_MODULO RES | %d", res);
         
         push(NUMBER_VAL((double)res));
