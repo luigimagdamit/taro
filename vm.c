@@ -122,6 +122,20 @@ static InterpretResult run() {
       case OP_DIVIDE:
         BINARY_OP(NUMBER_VAL, /);
         break;
+      case OP_MODULO: {
+        int b = (int)AS_NUMBER(pop());
+        int a = (int)AS_NUMBER(pop());
+
+        int res = a % b;
+
+
+
+        printf("OP_MODULO RES | %d", res);
+        
+        push(NUMBER_VAL((double)res));
+
+        break;
+      }
       case OP_NOT:
         push(BOOL_VAL(isFalsey(pop())));
         break;
