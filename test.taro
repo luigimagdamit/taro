@@ -1,11 +1,27 @@
-let res = [];
+let name = "taro";
+let age = 400;
+// variable assignment with 'let' keyword
 
-for (let i = 1; i < 20; i = i + 1) {
-  if (i % 3 == 0 and i % 5 == 0) push(res, "fizzbuzz");
-  else if (i % 3 == 0) push(res, "fizz");
-  else if (i % 5 == 0) push(res, "buzz");
-  else push(res, i);
-}
-print res;
+let Games = enum{
+	VALORANT,
+	TEKKEN,
+	SF6
+};
 
+let currentlyPlaying = Games::VALORANT;
+// native support of enum types!
 
+print "my name is " + name;
+// print keyword. taro also features string concatenation
+
+let drinks = ["tea", "coffee", "boba"];
+print drinks;
+// taro also features native list types and operations!
+
+push(drinks, "lemonade");
+let fav = drinks[3];
+
+print "my name is " + name + " and i love " + fav;
+
+if (fav is "lemonade") print "when life gives you lemons...";
+print fav == "lemonade";
