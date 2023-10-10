@@ -222,6 +222,32 @@ static InterpretResult run() {
         push(OBJ_VAL(list));
         break;
       }
+      case OP_DICT: {
+        double dictCount = AS_NUMBER(pop());
+        ObjDict* dict = newDict();
+
+        push(OBJ_VAL(dict));
+        for(int i = dictCount; i > 0; i--) {
+          printf("\nLISTCOUNT: %d", i);
+          Value val = peek(i);
+          Value key = peek(i+1);
+          printf("KEY: %s, VALUE: %s\n", AS_CSTRING(key), AS_CSTRING(val));
+          ObjDictEntry* entry = newDictEntry();
+          entry->keyvalue[0] = key;
+          entry->keyvalue[1] = val;
+          tableSet(&dict->entries, AS_STRING(key), OBJ_VAL(entry));
+
+          dict->length++;
+
+        }
+        pop();
+        while(dictCount-- > 0) {
+          pop();
+          pop();
+        }
+        push(OBJ_VAL(dict));
+        break;
+      }
       case OP_LIST_SUB: {
         if(!IS_NUMBER(peek(0))) {
           runtimeError("List index value must evaluate to number type: list[:number:]");

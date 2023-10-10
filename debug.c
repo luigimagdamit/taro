@@ -58,6 +58,8 @@ int disassembleInstruction(Chunk* chunk, int offset) {
       return simpleInstruction("OP_RETURN", offset);
     case OP_LIST:
       return simpleInstruction("OP_LIST", offset);
+    case OP_DICT:
+      return simpleInstruction("OP_DICT", offset);
     case OP_LIST_SUB:
       return simpleInstruction("OP_LIST_SUB", offset);
     case OP_LIST_STORE:

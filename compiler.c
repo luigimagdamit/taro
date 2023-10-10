@@ -189,6 +189,7 @@ static void declaration();
 static void printStatement();
 static void pushStatement();
 static void _enum(bool canAssign);
+static void dict(bool canAssign);
 static void getEnum(bool canAssign);
 static void expressionStatement();
 static void synchronize();
@@ -385,6 +386,38 @@ static void getEnum(bool canAssign) {
   advance();
   emitByte(OP_GET_ENUM);
 }
+static void dict(bool canAssign) {
+  int dictCount = 0;
+
+  consume(TOKEN_LEFT_BRACE, "");
+  for (;;) {
+    if(!check(TOKEN_RIGHT_BRACE)) {
+      dictCount++;
+      emitConstant(OBJ_VAL(copyString(parser.current.start, parser.current.length)));
+      advance();
+      consume(TOKEN_COLON, "Expected :");
+      emitConstant(OBJ_VAL(copyString(parser.current.start, parser.current.length)));
+      advance();
+      if (check(TOKEN_RIGHT_BRACE)) {
+        break;
+      }
+      if (check(TOKEN_COMMA)) {
+        consume(TOKEN_COMMA, "Expected ,");
+      } 
+      else {
+        errorAtCurrent("Enum object was not closed");
+        break;
+      }
+    } else {
+      break;
+    }
+  }
+  printf("dict!");
+  consume(TOKEN_RIGHT_BRACE, "");
+  emitConstant(NUMBER_VAL(dictCount));
+  emitByte(OP_DICT);
+
+}
 static void list(bool canAssign) {
   int listCount = 0;
   
@@ -493,6 +526,7 @@ ParseRule rules[] = {
   [TOKEN_STRING]        = {string,   NULL,   PREC_NONE},
   [TOKEN_NUMBER]        = {number,   NULL,   PREC_NONE},
   [TOKEN_ENUM]          = {_enum,    NULL,   PREC_NONE},
+  [TOKEN_DICT]          = {dict,     NULL,   PREC_OR},
   [TOKEN_AND]           = {NULL,     and_,   PREC_AND},
   [TOKEN_CLASS]         = {NULL,     NULL,   PREC_NONE},
   [TOKEN_ELSE]          = {NULL,     NULL,   PREC_NONE},

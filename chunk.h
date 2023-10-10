@@ -31,6 +31,7 @@ typedef enum {
   OP_LOOP,
   OP_ENUM,
   OP_GET_ENUM,
+  OP_DICT,
   OP_LIST,
   OP_LIST_STORE,
   OP_LIST_SUB,

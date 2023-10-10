@@ -61,6 +61,16 @@ ObjEnum* newEnum() {
   initTable(&_enum->fields);
   return _enum;
 }
+ObjDict* newDict() {
+  ObjDict* dict = ALLOCATE_OBJ(ObjDict, OBJ_DICT);
+  dict->length = 0;
+  initTable(&dict->entries);
+  return dict;
+}
+ObjDictEntry* newDictEntry() {
+  ObjDictEntry* entry = ALLOCATE_OBJ(ObjDictEntry, OBJ_DICT_ENTRY);
+  return entry;
+}
 ObjList* newList() {
   ObjList* list = ALLOCATE_OBJ(ObjList, OBJ_LIST);
   list->values = NULL;
@@ -129,6 +139,9 @@ void printObject(Value value) {
       printf("ENUM: %d", AS_ENUM(value)->length);
 
       break;
+    }
+    case OBJ_DICT: {
+      printf("OBJ_DICT");
     }
   }
 }

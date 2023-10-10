@@ -102,6 +102,7 @@ static TokenType identifierType() {
   switch (scanner.start[0]) {
     case 'a': return checkKeyword(1, 2, "nd", TOKEN_AND);
     case 'c': return checkKeyword(1, 4, "lass", TOKEN_CLASS);
+    case 'd': return checkKeyword(1, 3, "ict", TOKEN_DICT);
     case 'e': 
         if (scanner.current - scanner.start > 1) {
         switch(scanner.start[1]) {
@@ -216,8 +217,7 @@ Token scanToken() {
         match('=') ? TOKEN_GREATER_EQUAL : TOKEN_GREATER);
     case ':':
       return makeToken(
-        match(':') ? TOKEN_DOUBLE_COLON : TOKEN_DOUBLE_COLON
-      );
+        match(':') ? TOKEN_DOUBLE_COLON : TOKEN_COLON);
     case '"': return string();
     
   }

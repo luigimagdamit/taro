@@ -24,6 +24,10 @@ static void freeObject(Obj* object) {
       break;
     case OBJ_ENUM:
       break;
+    case OBJ_DICT:
+      break;
+    case OBJ_DICT_ENTRY:
+      break;
   }
 }
 

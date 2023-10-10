@@ -19,6 +19,8 @@ typedef enum {
   OBJ_STRING,
   OBJ_LIST,
   OBJ_ENUM,
+  OBJ_DICT,
+  OBJ_DICT_ENTRY
 } ObjType;
 
 struct Obj {
@@ -45,6 +47,18 @@ typedef struct {
   int length;
   Table fields; 
 } ObjEnum;
+
+typedef struct {
+  Obj obj;
+  int length;
+  Table entries;
+} ObjDict;
+
+typedef struct {
+  Obj obj;
+  Value keyvalue[2];
+} ObjDictEntry;
+
 ObjString* takeString(char* chars, int length);
 ObjString* copyString(const char* chars, int length);
 void printObject(Value value);
@@ -52,6 +66,8 @@ void appendList(ObjList* list, Value value);
 ObjString* copyString(const char* chars, int length);
 ObjList* newList();
 ObjEnum* newEnum();
+ObjDict* newDict();
+ObjDictEntry* newDictEntry();
 static inline bool isObjType(Value value, ObjType type) {
   return IS_OBJ(value) && (AS_OBJ(value)->type == type);
 }
