@@ -11,7 +11,7 @@ let age = 400;
 // variable assignment with 'let' keyword
 
 let Games = enum{
-	VALORANT,
+  VALORANT,
 	TEKKEN,
 	SF6
 };
@@ -136,11 +136,11 @@ let sleepy = true;
 let favorite;
 // you can also instantiate a variable without declaring a value
 
-if (name is "Shravan" and bloodthirsty is true) {
+if (name is "Shravan" and bloodthirsty) {
 // you can use python style `is` for equality, or good old `==`
   favorite = Games::MELEE;
 }
-else if (name is "Mark" or sleepy == false) {
+else if (name is "Mark" or sleepy) {
   favorite = Games::MARIOKART;
 }
 else {
