@@ -5,13 +5,15 @@
 
 A bytecode interpreter and virtual machine for my Lua/Python-inspired programming language that targets custom-made bytecode. Implements a Pratt-styled Precedence parser, explicit types,  control flow, and more, alongside bytecode IR generation from a source file. Written in C.
 
+Taro is originally based on the Lox language specification and implementation of Bob Nystrom's "Crafting Interpreters", with a continued intent to continue implementing my own desired features/tools within the **taro** language. 
+
 ```js
 let name = "taro";
 let age = 400;
 // variable assignment with 'let' keyword
 
 let Games = enum{
-  VALORANT,
+	VALORANT,
 	TEKKEN,
 	SF6
 };
@@ -37,6 +39,17 @@ else print "awkward..";
 print fav == "lemonade";
 // yes, we love lemonade :)
 ```
+
+#### Planned Features
+
+1. Python style dictionaries
+2. String subscripting
+3. Unary negation for pure boolean arrays, similar to R `-[true, false] == [false, true]`
+4. Rust-style array initialization `let a = [1..10];` 
+5. module system, possibly designing a package manager
+6. more native functions allowing access to system operations
+7. Rust-style match statements
+
 
 Taro is designed to utilize the ease of readability of scripting languages similar to JavaScript, Lua, and Python while maintaining other traditional syntax  considerations such as curly braces for scoping, and semicolons. 
 
@@ -136,11 +149,11 @@ let sleepy = true;
 let favorite;
 // you can also instantiate a variable without declaring a value
 
-if (name is "Shravan" and bloodthirsty) {
+if (name is "Shravan" and bloodthirsty is true) {
 // you can use python style `is` for equality, or good old `==`
   favorite = Games::MELEE;
 }
-else if (name is "Mark" or sleepy) {
+else if (name is "Mark" or sleepy is false) {
   favorite = Games::MARIOKART;
 }
 else {
