@@ -5,7 +5,7 @@
 
 A bytecode interpreter and virtual machine for my Lua/Python-inspired programming language that targets custom-made bytecode. Implements a Pratt-styled Precedence parser, explicit types,  control flow, and more, alongside bytecode IR generation from a source file. Written in C.
 
-Taro is originally based on the Lox language specification and implementation of Bob Nystrom's "Crafting Interpreters", with a continued intent to continue implementing my own desired features/tools within the **taro** language. 
+Taro is originally based on the Lox language specification and implementation of Bob Nystrom's "Crafting Interpreters", with intent to continue implementing my own desired features/tools within the **taro** language. 
 
 ```js
 let name = "taro";
